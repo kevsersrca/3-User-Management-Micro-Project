@@ -12,8 +12,8 @@ $tel=$_POST['tel'];
 $email=$_POST['email'];
 $not=$_POST['notlar'];
 
-$guncelle=$db->prepare(" UPDATE kullanici_bilgileri set ad=? , soyad=?, tel=?, email=?, notlar=? where id= '$id'");
-$guncelle->execute(array($ad,$soyad,$tel,$email,$not));
+$guncelle=$db->prepare(' UPDATE kullanici_bilgileri set ad=? , soyad=?, tel=?, email=?, notlar=? where id=? ');
+$guncelle->execute(array($ad,$soyad,$tel,$email,$not,$id));
 
 if($guncelle){
 	header("location:index.php"); 
@@ -32,23 +32,23 @@ if($users=$db->query(" SELECT * from kullanici_bilgileri where id= '$id'")){
 				</tr>
 				<tr>
 					<td>ADINIZ:</td>
-					<td><input type="text" 	name="ad" value="<?php echo $row["ad"]; ?>"></td>
+					<td><input type="text" 	name="ad" value="<?php echo $row["ad"]; ?>" required></td>
 				</tr>
 				<tr>
 					<td>SOYADINIZ:</td>
-					<td><input type="text" name="soyad" value="<?php echo $row["soyad"]; ?>"></td>
+					<td><input type="text" name="soyad" value="<?php echo $row["soyad"]; ?>" required></td>
 				</tr>
 				<tr>
 					<td>TELEFON:</td>
-					<td><input type="text" name="tel" value="<?php echo $row["tel"]; ?>"></td>
+					<td><input type="text" name="tel" value="<?php echo $row["tel"]; ?>" required></td>
 				</tr>
 				<tr>
 					<td>EMAİL:</td>
-					<td><input type="text" name="email" value="<?php echo $row["email"]; ?>"></td>
+					<td><input type="text" name="email" value="<?php echo $row["email"]; ?>" required></td>
 				</tr>
 				<tr>
 					<td>NOT:</td>
-					<td><input type="textarea" name="notlar" value="<?php echo $row["notlar"]; ?>"></td>
+					<td><input type="textarea" name="notlar" value="<?php echo $row["notlar"]; ?>" required></td>
 				</tr>
 				<tr>
 					<td><input type="submit" value="GÜNCELLE" name="submit"></td>

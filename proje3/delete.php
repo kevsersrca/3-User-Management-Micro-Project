@@ -1,9 +1,17 @@
 <?php
 include("connect.php");
-	$gelenid=$_GET["id"];
-		if($count=$db->exec('DELETE FROM kullanici_bilgileri WHERE id='.$gelenid.''))
-{
-	header("location:index.php");
-}
+if(isset($_GET["id"]))
+	$id=$_GET["id"];
+		
+		$musteri=$db->prepare("SELECT * FROM kullanici_bilgileri where id=?");
+		$musteri->execute(array($id));
+		if($musteri){
+			header("location:index.php");
+		}
+		else
+		{
+			echo"Silinemedi";
+			header("location:index.php");
+		}
 
 	

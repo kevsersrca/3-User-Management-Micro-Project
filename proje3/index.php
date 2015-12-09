@@ -12,19 +12,19 @@ include("connect.php");
 	<h1>Müşteri Ekle </h1>
 		<table >
 			<tr>
-				<td><input type="text" style="padding:5px; " name="ad" id="ad" placeholder="AD"></td>
+				<td><input type="text" style="padding:5px; " name="ad" id="ad" placeholder="AD" required></td>
 			</tr>
 			<tr>
-				<td><input type="text" style="padding:5px;" name="soyad" id="soyad" placeholder="SOYAD"></td>
+				<td><input type="text" style="padding:5px;" name="soyad" id="soyad" placeholder="SOYAD" required></td>
 			</tr>
 			<tr>
-				<td><input type="text" style="padding:5px;" name="tel" id="tel" placeholder="TELEFON"></td>
+				<td><input type="text" style="padding:5px;" name="tel" id="tel" placeholder="TELEFON" required></td>
 			</tr>
 			<tr>
-				<td><input type="text" style="padding:5px;" name="email" id="email" placeholder="EPOSTA"></td>
+				<td><input type="text" style="padding:5px;" name="email" id="email" placeholder="EPOSTA" required></td>
 			</tr>
 			<tr>
-				<td><input type="textarea" style="padding:5px;" name="notlar" id="not" placeholder="NOT"></td>
+				<td><input type="textarea" style="padding:5px;" name="notlar" id="not" placeholder="NOT" required></td>
 			</tr>
 			<tr>
 				<td><input type="submit"  style="padding:15px; background:purple; color:white; font-weight:bold;" value="Gönder"></td>
@@ -55,6 +55,7 @@ include("search.php");
 
     
     if($_POST["ara"]){
+      if(!empty($_POST["ara"])){
       $gelen=$_POST["ara"];  
         ?>
         <table>
@@ -81,8 +82,8 @@ include("search.php");
       <td><?=$row["tel"]; ?></td>
       <td><?=$row["email"]; ?></td>
       <td><?=$row["notlar"]; ?></td>
-      <td><a href="update.php?id=<?php echo $row['id']; ?>"<button>Güncelle</button></td>
-      <td><a href="delete.php?id=<?php echo $row['id']; ?>"<button onclick=" return a()">SİL</button></td>
+      <td><a href="update.php?id=<?=$row["id"]; ?>"<button>Güncelle</button></td>
+      <td><a href="delete.php?id=<?=$row["id"]; ?>"<button onclick=" return a()">SİL</button></td>
     </tr>
                 
         <?php
@@ -91,6 +92,12 @@ include("search.php");
     </table>
     <?php
     }
+    else
+    {
+      alert("lütfen aranacak karakter giriniz!");
+    }
+  }
+
     else
     {
       if($users = $db->query('SELECT * FROM kullanici_bilgileri ')){

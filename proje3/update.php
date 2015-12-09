@@ -48,7 +48,7 @@ if($users=$db->query(" SELECT * from kullanici_bilgileri where id= '$id'")){
 				</tr>
 				<tr>
 					<td>NOT:</td>
-					<td><input type="textarea" name="not" value="<?php echo $row["notlar"]; ?>"></td>
+					<td><input type="textarea" name="notlar" value="<?php echo $row["notlar"]; ?>"></td>
 				</tr>
 				<tr>
 					<td><input type="submit" value="GÜNCELLE" name="submit"></td>

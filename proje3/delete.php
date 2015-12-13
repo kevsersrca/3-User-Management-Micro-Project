@@ -3,7 +3,9 @@ include("connect.php");
 if(isset($_GET["id"]))
 	$id=$_GET["id"];
 		
-		$musteri=$db->prepare("SELECT * FROM kullanici_bilgileri where id=?");
+		$musteri=$db->prepare('SELECT * FROM `kullanici_bilgileri` where id=?');
+		$musteri->execute(array($id));
+		$musteri=$db->prepare('DELETE FROM `kullanici_bilgileri` WHERE id=?');
 		$musteri->execute(array($id));
 		if($musteri){
 			header("location:index.php");
@@ -13,5 +15,3 @@ if(isset($_GET["id"]))
 			echo"Silinemedi";
 			header("location:index.php");
 		}
-
-	
